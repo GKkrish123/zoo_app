@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.0",
+    "title": "ZOO MAINTANENCE",
+    "description": "A backend application for maintaining a zoo.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Animal",
+      "description": "APIs for managing animals in the zoo"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/animal": {
+      "get": {
+        "summary": "Fetch Animals",
+        "tags": ["Animal"],
+        "description": "API for fetching and searching animals in the zoo",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "The Product that needs to be fetched",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animals fetched successfully"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add Animal",
+        "tags": ["Animal"],
+        "description": "API for adding an animal in the zoo",
+        "requestBody": {
+          "description": "The details of animal to be added",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "species": { "type": "string" },
+                  "age": { "type": "number" },
+                  "gender": { "type": "string" },
+                  "section_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Animal added successfully"
+          }
+        }
+      }
+    },
+    "/animal/{id}": {
+      "put": {
+        "summary": "Edit Animal",
+        "tags": ["Animal"],
+        "description": "API for updating an existing animal in the zoo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the animal that needs to be updated",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "description": "The details of animal to be updated",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "species": { "type": "string" },
+                  "age": { "type": "number" },
+                  "gender": { "type": "string" },
+                  "section_id": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Animal updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete animal",
+        "tags": ["Animal"],
+        "description": "API for deleting an animal in the zoo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the animal that needs to be updated",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal deleted successfully"
+          }
+        }
+      }
+    }
+  }
+}
